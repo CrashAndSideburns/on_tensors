@@ -1,0 +1,28 @@
+\documentclass{book}
+
+\usepackage{subfiles}
+\usepackage{tensor}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+\newtheorem{definition}{Definition}
+\newtheorem{notation}{Notation}
+\newtheorem{remark}{Remark}
+\newtheorem{theorem}{Theorem}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\app}[2]{\langle#1,#2\rangle}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+
+\title{On Tensors}
+\author{Morgan Arnold}
+\date{Compiled On: \today}
+
+\begin{document}
+    \frontmatter
+    \maketitle
+    \tableofcontents
+    \mainmatter
+    \subfile{src/chapter_1.tex}
+\end{document}
