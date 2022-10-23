@@ -1,3 +1,3 @@
 # On Tensors
 
-On Tensors is a whirlwind tour of tensors and tensor calculus.
+On Tensors is a whirlwind introduction to tensors.
