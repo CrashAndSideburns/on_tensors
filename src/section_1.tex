@@ -1,14 +1,14 @@
 \documentclass[../main.tex]{subfiles}
 
 \begin{document}
-    \chapter{Vector Spaces \& Dual Spaces}
+    \section{Vector Spaces \& Dual Spaces}
     We begin our exploration of tensors with a review of the theory of vector spaces. Once we have reviewed relevant definitions and theorems regarding vector spaces, we will move to examining linear mappings from vectors to scalars. This will allow us to define the dual space corresponding to any vector space.
     \begin{definition}[Vector Spaces]
         A vector space is composed of a field \(F\) and a set \(V\), along with two binary operations called vector addition and scalar multiplication, typically denoted \(\vec{u}+\vec{v}\) and \(a\vec{u}\) respectively, where \(a\in{}F\) and \(\vec{u},\vec{v}\in{}V\). The following axioms must also be satisfied for all \(a,b\in{}F\) and \(\vec{u},\vec{v},\vec{w}\in{}V\):
         \begin{itemize}
             \item\(\vec{u}+(\vec{v}+\vec{w})=(\vec{u}+\vec{v})+\vec{w}\)
             \item\(\vec{u}+\vec{v}=\vec{v}+\vec{u}\)
-            \item\(\exists{}\mathbf{0}\in{}V\) such that \(\vec{u}+\mathbf{0}=\mathbf{0}\)
+            \item\(\exists{}\vec{0}\in{}V\) such that \(\vec{u}+\vec{0}=\vec{u}\)
             \item\(\exists{}(-\vec{u})\in{}V\) such that \(\vec{u}+(-\vec{u})=\mathbf{0}\)
             \item\(a(b\vec{u})=(ab)\vec{u}\)
             \item\(1\vec{u}=\vec{u}\), where \(1\) is the multiplicative identity of \(F\)
@@ -17,6 +17,7 @@
         \end{itemize}
         The elements of \(F\) are called scalars, and the elements of \(V\) are called vectors. \(V\) is called a vector space over \(F\), or sometimes just a vector space if \(F\) is not relevant.
     \end{definition}
+    In the event that the reader is not familiar with the definition of a field, and is interested in tensors for their applications to physics, little is lost by thinking of \(F\) as being one of \(\mathbb{R}\) and \(\mathbb{C}\). In particular, when doing general relativity it is typically the case that \(F=\mathbb{R}\), and when doing quantum mechanics it is typically the case that \(F=\mathbb{C}\).
     \begin{notation}[Einstein Summation Convention]
         Let \(V\) be a vector space over \(F\). Let \(\left\{\vec{v}_{0},\vec{v}_{0},\dots,\vec{v}_{n}\right\}\) be an indexed set of vectors, and let \(\left\{c^{0},c^{1},\dots,c^{n}\right\}\) be an indexed set of scalars. The Einstein summation convention states that
         \begin{equation*}
@@ -69,6 +70,15 @@
             %TODO
         \end{proof}
     \end{theorem}
+    Observe that the definition of the dual basis allows for the operation of a covector on a vector to be evaluated especially easily. Let \(V\) be a vector space over \(F\), and let \(V^{*}\) be its dual space. Let \(\vec{e}_{\mu}\) be a basis of \(V\), then if \(\vec{v}\in{}V\) we may write \(\vec{v}=a^{\mu}\vec{e}_{\mu}\) for some \(a^{\mu}\). Similarly, let \(\vec{e}^{\nu}\) be the dual basis of \(V^{*}\) corresponding to \(\vec{e}_{\mu}\), then if \(\vec{v}^{*}\in{}V^{*}\) we may write \(\vec{v}^{*}=b_{\nu}\vec{e}^{\nu}\) for some \(b_{\nu}\). Therefore, in all generality we have
+    \begin{align*}
+        \app{\vec{v}^{*}}{\vec{v}}&=\app{b_{\nu}\vec{e}^{\nu}}{a^{\mu}\vec{e}_{\mu}}\\
+                                  &=a^{\mu}b_{\nu}\app{\vec{e}^{\nu}}{\vec{e}_{\mu}}\\
+                                  &=a^{\mu}b_{\nu}\delta_{\mu}^{\nu}\\
+                                  &=a^{\mu}b_{\mu},
+    \end{align*}
+    where the critical simplification \(\app{\vec{e}^{\nu}}{\vec{e}_{\mu}}=\delta_{\mu}^{\nu}\) would not have occured if \(\vec{e}^{\nu}\) was not chosen to be the dual basis corresponding to \(\vec{e}_{\mu}\).
+
     Having shown that every vector space has a corresponding dual space, it is natural to ask about the dual space of the dual space. At first glance, it seems as if our creation of a single vector space has lead to an infinite family of vector spaces simultaneously springing into existence. Fortunately (or unfortunately, depending on the reader's affinity for vector spaces), it turns out that the only vector spaces which are of any interest to us are the one which we explicitly constructed and its dual space. This is due to a particularly strong relationship between vector spaces and the dual spaces of their dual spaces.
     \begin{theorem}
         Let \(V\) be a vector space over \(F\). For every linear mapping \(\vec{v}^{**}:V^{*}\to{}F\), there is one and only one vector \(\vec{v}\in{}V\) such that \(\app{\vec{v}^{**}}{\vec{v}^{*}}=\app{\vec{v}^{*}}{\vec{v}}\) for all \(\vec{v}^{*}\in{}V^{*}\). This defines an isomorphism.
