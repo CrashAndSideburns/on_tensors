@@ -31,6 +31,9 @@
     \begin{definition}[Bases]
         Let \(V\) be a vector space over \(F\). A linearly independent subset \(\vec{e}_{\mu}\) of \(V\) is called a basis if for all \(\vec{v}\in{}V\) there exists a subset \(c^{\mu}\) of \(F\) such that \(\vec{v}=c^{\mu}\vec{e}_{\mu}\).
     \end{definition}
+    \begin{notation}[Cardinality]
+        Let \(S\) be a finite set. The number of elements in \(S\), also called the cardinality of \(S\), is denoted \(\abs{S}\).
+    \end{notation}
     \begin{theorem}
         Let \(V\) be a vector space. If \(\vec{u}_{\mu}\) and \(\vec{v}_{\nu}\) are bases of \(V\), then \(\abs{\vec{u}_{\mu}}=\abs{\vec{v}_{\mu}}\).
         \begin{proof}
@@ -44,7 +47,7 @@
         Given a mapping \(f:A\to{}B\) and some \(a\in{}A\), we denote the value of \(f\) at \(a\) by \(\app{f}{a}\).
     \end{notation}
     \begin{definition}[Linear Mappings]
-        Let \(U\) and \(W\) be vector spaces over \(F\). A mapping \(f:U\to{}W\) is called linear if for all \(\vec{u},\vec{v}\in{}U\) and \(a\in{}F\), the following hold:
+        Let \(V\) be a vector space over \(F\). A mapping \(f:V\to{}F\) is called linear if for all \(\vec{u},\vec{v}\in{}V\) and \(a\in{}F\), the following hold:
         \begin{itemize}
             \item\(\app{f}{\vec{u}+\vec{v}}=\app{f}{\vec{u}}+\app{f}{\vec{v}}\)
             \item\(\app{f}{a\vec{u}}=a\app{f}{\vec{u}}\)
