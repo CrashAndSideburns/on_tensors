@@ -19,11 +19,11 @@
     \end{definition}
     In the event that the reader is not familiar with the definition of a field, and is interested in tensors for their applications to physics, little is lost by thinking of \(F\) as being one of \(\mathbb{R}\) and \(\mathbb{C}\). In particular, when doing general relativity it is typically the case that \(F=\mathbb{R}\), and when doing quantum mechanics it is typically the case that \(F=\mathbb{C}\).
     \begin{notation}[Einstein Summation Convention]
-        Let \(V\) be a vector space over \(F\). Let \(\left\{\vec{v}_{0},\vec{v}_{0},\dots,\vec{v}_{n}\right\}\) be an indexed set of vectors, and let \(\left\{c^{0},c^{1},\dots,c^{n}\right\}\) be an indexed set of scalars. The Einstein summation convention states that
+        Consider some indexed sets \(\left\{a^{0},\dots,a^{n}\right\}\) and \(\left\{b_{0},\dots,b_{n}\right\}\). The Einstein summation convention states that
         \begin{equation*}
-            \sum_{\mu=0}^{n}c^{\mu}\vec{v}_{\mu}=c^{\mu}\vec{v}_{\mu}.
+            \sum_{\mu=0}^{n}a^{\mu}b_{\mu}=a^{\mu}b_{\mu}.
         \end{equation*}
-        In other words, if an unbound index variable occurs twice in a single term, once in superscript and once in subscript, summation is implied over all values of the index. In general relativity, the values of such indices are almost always \(\left\{0,1,2,4\right\}\), but in general it must be clear from context what the values taken on by the indices are. \(\vec{v}_{\mu}\) and \(c^{\mu}\) are sometimes used to refer to the sets of vectors and scalars, respectively.
+        In other words, if an unbound index variable occurs twice in a single term, once in superscript and once in subscript, summation is implied over all values of the index. In general relativity, the values of such indices are almost always \(\left\{0,1,2,4\right\}\), but in general it must be clear from context what the values taken on by the indices are. \(a^{\mu}\) and \(b_{\mu}\) are sometimes used to refer to the sets themselves.
     \end{notation}
     \begin{definition}[Linear Dependence \& Independence]
         Let \(V\) be a vector space over \(F\). Let \(\vec{v}_{\mu}\) be a finite subset of \(V\). \(\vec{v}_{\mu}\) is called linearly dependent if there exists a subset \(c^{\mu}\) of \(F\), not all zero, such that \(c^{\mu}\vec{v}_{\mu}=0\). \(\vec{v}_{\mu}\) is called linearly independent if it is not linearly dependent.
