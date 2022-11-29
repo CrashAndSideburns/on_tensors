@@ -1,0 +1,48 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+    \section{Tensors, Tensor Products, \& Tensor Product Spaces}
+    Having reviewed the theory of vector spaces and examined dual spaces, we have exhausted the set of all linear mappings from vectors to scalars and the set of all linear mappings from covectors to scalars. We now turn to the examination of multilinear mappings from multiple vectors and covectors to scalars, and indentify these mappings as tensors. We then carry on to define the tensor product as a method of combining tensors to create new tensors. This will allow us to define an infinite family of new vector spaces: the tensor product spaces.
+    \begin{definition}[Multilinear Mappings]
+        Let \(U_{1},\dots,U_{k}\) be vector spaces over \(F\). Let \(\vec{u}_{i}\in{}U_{i}\) for all \(i\in\left\{1,\dots,k\right\}\). A mapping \(f:U_{1}\times\cdots\times{}U_{k}\to{}F\) is called multilinear if the mapping \(g:U_{i}\to{}F\) defined by \(\app{g}{\vec{u}_{i}}=\app{f}{(\vec{u}_{1},\dots,\vec{u}_{i},\dots,\vec{u}_{k})}\) is linear for all \(i\in\left\{1,\dots,k\right\}\).
+        %FIXME
+    \end{definition}
+    \begin{definition}[Tensors]
+        Let \(V\) be a vector space over \(F\), and let \(V^{*}\) be its dual space. A multilinear mapping \(T:{V^{*}}^{p}\times{}V^{q}\to{}F\) is called a type \((p,q)\) tensor. The set of all type \((p,q)\) tensors is denoted \(\mathcal{T}_{p}^{q}\). \(\mathcal{T}_{p}^{q}\) is a vector space over \(F\) once vector addition and scalar multiplication have been defined as follows:
+        \begin{itemize}
+            \item\(\begin{aligned}[t]
+                    \app{T+U}{(\vec{v}^{1},\dots,\vec{v}^{p},\vec{v}_{1},\dots,\vec{v}_{q}})&=\app{T}{(\vec{v}^{1},\dots,\vec{v}^{p},\vec{v}_{1},\dots,\vec{v}_{q}})\\
+                                                                                            &+\app{U}{(\vec{v}^{1},\dots,\vec{v}^{p},\vec{v}_{1},\dots,\vec{v}_{q}})
+            \end{aligned}\)
+            \item\(\app{aT}{(\vec{v}^{1},\dots,\vec{v}^{p},\vec{v}_{1},\dots,\vec{v}_{q}})=a\app{T}{(\vec{v}^{1},\dots,\vec{v}^{p},\vec{v}_{1},\dots,\vec{v}_{q}})\).
+        \end{itemize}
+        Verification that the relevant axioms hold is mostly tedious, and so is omitted. The interested reader may wish to prove that the relevant axioms hold as an exercise.
+    \end{definition}
+    \begin{definition}[Rank]
+        Let \(T\in\mathcal{T}_{p}^{q}\). \(p+q\) is called the rank of \(T\).
+    \end{definition}
+    Careful consideration of this definition will reveal that we have already defined two types of tensors: vectors and covectors. According to our new definition, vectors are type \((1,0)\) tensors and covectors are type \((0,1)\) tensors. We have actually seen a third type of tensor, although not a very interesting one. As a matter of convenction, scalars are considered to be type \((0,0)\) tensors.
+    
+    Having defined tensors we have, in some sense, accomplished everything which we set out to. Unfortunately, it rapidly becomes apparent that there are substantial issues with the manner in which we defined tensors. One significant issue is that actually constructing a tensor while relying only on this definition represents a somewhat onerous task. The multilinearity of tensors helps somewhat, but it still appears to be necessary to define the operation of a type \((p,q)\) tensor on all \((pq)^{\abs{V}}\) combinations of basis vectors. We solve this issue by presenting a manner for combining tensors to produce new tensors of higher rank: the tensor product. This will allow us to represent all tensors in terms of vectors and covectors.
+    \begin{definition}[Tensor Product]
+        Let \(T\in\mathcal{T}_{p}^{q}\) and \(U\in\mathcal{T}_{r}^{s}\). Let \(\vec{v}_{i},\vec{u}_{i}\in{}V\) and \(\vec{v}^{i},\vec{u}^{i}\in{}V^{*}\) for all \(i\). The tensor product of \(T\) and \(U\) defines a new tensor denoted by \(T\otimes{}U\in\mathcal{T}_{p+r}^{q+s}\). Let \(S=T\otimes{}U\). The operation of \(S\) is defined by
+        \begin{align*}
+            \app{S}{(\vec{v}^{1},\dots,\vec{v}^{p},\vec{v}_{1},\dots,\vec{v}_{q},\vec{u}^{1},\dots,\vec{u}^{r},\vec{u}_{1},\dots,\vec{u}_{s})}=&\app{T}{(\vec{v}^{1},\dots,\vec{v}^{p},\vec{v}_{1},\dots,\vec{v}_{q})}\\
+                                                                                                                                               &\app{U}{(\vec{u}^{1},\dots,\vec{u}^{r},\vec{u}_{1},\dots,\vec{u}_{s})}
+        \end{align*}
+    \end{definition}
+    \begin{definition}[Tensor Product Space]
+        Let \(V\) be a vector space. Let \(V^{*}\) be its dual space. A tensor product space is a set defined by
+        \begin{equation*}
+            \left\{\vec{v}_1\otimes\dots\otimes{}\vec{v}_{q}\otimes\vec{v}^1\otimes\dots\otimes{}\vec{v}^{p}:\vec{v}_{i}\in{}V,\vec{v}^{i}\in{}V^{*}\right\}
+        \end{equation*}
+        which is typically denoted by \(\underbrace{V\otimes\cdots\otimes{}V}_{q\text{ times}}\otimes\underbrace{V^{*}\otimes\cdots\otimes{}V^{*}}_{p\text{ times}}\) or \(V^{q}\otimes{}{V^{*}}^{p}\).
+    \end{definition}
+    \begin{theorem}
+        \(V^{q}\otimes{}{V^{*}}^{p}=\mathcal{T}_{p}^{q}\).
+        \begin{proof}
+            %TODO
+        \end{proof}
+    \end{theorem}
+    This reframing of \(\mathcal{T}_{p}^{q}\) as a tensor product space is deeply advantageous. In particular, the fact that it is constructed directly from \(V\) and \(V^{*}\) induces a natural basis on \(\mathcal{T}_{p}^{q}\), namely \(\vec{e}_{\mu_{1}}\otimes\cdots\otimes\vec{e}_{\mu_{q}}\otimes\vec{e}^{\nu_{1}}\otimes\cdots\otimes\vec{e}^{\nu_{p}}\), where \(\vec{e}_{\mu_{i}}\) and \(\vec{e}^{\nu_{i}}\) are all simply copies of a basis of \(V\) and the corresponding dual basis. Similarly to our definition of the dual basis, this choice of basis for \(\mathcal{T}_{p}^{q}\) allows for the operation of an element of \(\mathcal{T}_{p}^{q}\) on the appropriate number of vectors and covectors to be evaluated with ease. We will, however, defer our discussion of this until we have more fully developed the theory of tensors.
+\end{document}
