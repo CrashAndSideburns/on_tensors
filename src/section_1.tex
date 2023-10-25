@@ -3,91 +3,113 @@
 \begin{document}
     \section{Vector Spaces \& Dual Spaces}
     We begin our exploration of tensors with a review of the theory of vector spaces. Once we have reviewed relevant definitions and theorems regarding vector spaces, we will move to examining linear mappings from vectors to scalars. This will allow us to define the dual space corresponding to any vector space.
+
     \begin{definition}[Vector Spaces]
-        A vector space is composed of a field \(F\) and a set \(V\), along with two binary operations called vector addition and scalar multiplication, typically denoted \(\vec{u}+\vec{v}\) and \(a\vec{u}\) respectively, where \(a\in{}F\) and \(\vec{u},\vec{v}\in{}V\). The following axioms must also be satisfied for all \(a,b\in{}F\) and \(\vec{u},\vec{v},\vec{w}\in{}V\):
+        A vector space is composed of a field \(F\) and a set \(V\), along with two binary operations called vector addition and scalar multiplication, typically denoted \(\vec{u}+\vec{v}\) and \(a\vec{u}\) respectively, where \(a \in F\) and \(\vec{u}, \vec{v} \in V\). The following axioms must also be satisfied:
         \begin{itemize}
-            \item\(\vec{u}+(\vec{v}+\vec{w})=(\vec{u}+\vec{v})+\vec{w}\)
-            \item\(\vec{u}+\vec{v}=\vec{v}+\vec{u}\)
-            \item\(\exists{}\vec{0}\in{}V\) such that \(\vec{u}+\vec{0}=\vec{u}\)
-            \item\(\exists{}(-\vec{u})\in{}V\) such that \(\vec{u}+(-\vec{u})=\mathbf{0}\)
-            \item\(a(b\vec{u})=(ab)\vec{u}\)
-            \item\(1\vec{u}=\vec{u}\), where \(1\) is the multiplicative identity of \(F\)
-            \item\(a(\vec{u}+\vec{v})=a\vec{u}+a\vec{v}\)
-            \item\((a+b)\vec{u}=a\vec{u}+b\vec{u}\)
+            \item \(\vec{u}+(\vec{v}+\vec{w}) = (\vec{u}+\vec{v})+\vec{w}\) for all \(\vec{u}, \vec{v}, \vec{w} \in V\),
+            \item \(\vec{u}+\vec{v} = \vec{v}+\vec{u}\) for all \(\vec{u}, \vec{v} \in V\),
+            \item there exists some element \(\vec{0} \in V\) such that \(\vec{u}+\vec{0} = \vec{u}\) for all \(\vec{u} \in V\),
+            \item for all \(\vec{u} \in V\), there exists some element \(-\vec{u} \in V\) such that \(\vec{u}+(-\vec{u}) = \vec{0}\),
+            \item \(a(b\vec{u}) = (ab)\vec{u}\) for all \(a, b \in F\) and \(\vec{u} \in V\),
+            \item \(1\vec{u} = \vec{u}\) for all \(\vec{u} \in V\), where \(1\) is the multiplicative identity of \(F\),
+            \item \(a(\vec{u}+\vec{v}) = a\vec{u}+a\vec{v}\) for all \(a \in F\) and \(\vec{u}, \vec{v} \in V\),
+            \item \((a+b)\vec{u} = a\vec{u}+b\vec{u}\) for all \(a, b \in F\) and \(\vec{u} \in V\).
         \end{itemize}
-        The elements of \(F\) are called scalars, and the elements of \(V\) are called vectors. \(V\) is called a vector space over \(F\), or sometimes just a vector space if \(F\) is not relevant.
+        The elements of \(F\) are called scalars, and the elements of \(V\) are called vectors. \(V\) is called a vector space over \(F\), or sometimes just a vector space if \(F\) is clear from context or not relevant.
     \end{definition}
-    In the event that the reader is not familiar with the definition of a field, and is interested in tensors for their applications to physics, little is lost by thinking of \(F\) as being one of \(\mathbb{R}\) and \(\mathbb{C}\). In particular, when doing general relativity it is typically the case that \(F=\mathbb{R}\), and when doing quantum mechanics it is typically the case that \(F=\mathbb{C}\).
+
+    In the event that the reader is not familiar with the definition of a field, and is interested in tensors for their applications to physics, little is lost by thinking of \(F\) as being one of \(\mathbb{R}\) or \(\mathbb{C}\). In particular, in classical and relativistic physics it is typically the case that \(F = \mathbb{R}\).
+
     \begin{notation}[Einstein Summation Convention]
-        Consider some indexed sets \(\left\{a^{0},\dots,a^{n}\right\}\) and \(\left\{b_{0},\dots,b_{n}\right\}\). The Einstein summation convention states that
+        Consider some indexed sets \(\{a^{1}, \dots, a^{n}\}\) and \(\{b_{1}, \dots, b_{n}\}\). The Einstein summation convention states that
         \begin{equation*}
-            \sum_{\mu=0}^{n}a^{\mu}b_{\mu}=a^{\mu}b_{\mu}.
+            a^{\mu}b_{\mu} \coloneqq \sum_{\mu=1}^{n} a^{\mu}b_{\mu}
         \end{equation*}
-        In other words, if an unbound index variable occurs twice in a single term, once in superscript and once in subscript, summation is implied over all values of the index. In general relativity, the values of such indices are almost always \(\left\{0,1,2,4\right\}\), but in general it must be clear from context what the values taken on by the indices are. \(a^{\mu}\) and \(b_{\mu}\) are sometimes used to refer to the sets themselves.
+        In other words, if an unbound index variable occurs twice in a single term, at least once in superscript and at least once in subscript, summation is implied over all values of the index. In general relativity, the values of such indices are almost always \(\left\{0, 1, 2, 3\right\}\), but in general it must be clear from context what the values taken on by the indices are. \(a^{\mu}\) and \(b_{\mu}\) are sometimes used to refer to the indexed sets themselves.
     \end{notation}
+
     \begin{definition}[Linear Dependence \& Independence]
-        Let \(V\) be a vector space over \(F\). Let \(\vec{v}_{\mu}\) be a finite subset of \(V\). \(\vec{v}_{\mu}\) is called linearly dependent if there exists a subset \(c^{\mu}\) of \(F\), not all zero, such that \(c^{\mu}\vec{v}_{\mu}=0\). \(\vec{v}_{\mu}\) is called linearly independent if it is not linearly dependent.
+        Let \(V\) be a vector space over \(F\). Let \(\vec{v}_{\mu}\) be a subset of \(V\). The vectors \(\vec{v}_{\mu}\) are called linearly dependent if there exists a corresponding subset \(c^{\mu}\) of \(F\), not all zero, such that \(c^{\mu}\vec{v}_{\mu} = 0\). \(\vec{v}_{\mu}\) is called linearly independent if it is not linearly dependent.
     \end{definition}
+
     \begin{definition}[Bases]
-        Let \(V\) be a vector space over \(F\). A linearly independent subset \(\vec{e}_{\mu}\) of \(V\) is called a basis if for all \(\vec{v}\in{}V\) there exists a subset \(c^{\mu}\) of \(F\) such that \(\vec{v}=c^{\mu}\vec{e}_{\mu}\).
+        Let \(V\) be a vector space over \(F\). A linearly independent subset \(\vec{e}_{\mu}\) of \(V\) is called a basis if for all \(\vec{v} \in V\) there exists a subset \(c^{\mu}\) of \(F\) such that \(\vec{v} = c^{\mu}\vec{e}_{\mu}\).
     \end{definition}
-    \begin{notation}[Cardinality]
-        Let \(S\) be a finite set. The number of elements in \(S\), also called the cardinality of \(S\), is denoted \(\abs{S}\).
-    \end{notation}
+
     \begin{theorem}
-        Let \(V\) be a vector space. If \(\vec{u}_{\mu}\) and \(\vec{v}_{\nu}\) are bases of \(V\), then \(\abs{\vec{u}_{\mu}}=\abs{\vec{v}_{\mu}}\).
+        Let \(V\) be a vector space. If \(\vec{u}_{\mu}\) and \(\vec{v}_{\nu}\) are finite bases of \(V\), then \(\abs{\vec{u}_{\mu}}=\abs{\vec{v}_{\mu}}\).
         \begin{proof}
             %TODO
         \end{proof}
     \end{theorem}
+
     \begin{definition}[Dimension]
-        Let \(V\) be a vector space. Let \(\vec{e}_{\mu}\) be a basis of \(V\). \(\abs{\vec{e}_{\mu}}\) is called the dimension of \(V\).
+        Let \(V\) be a vector space admitting a finite basis \(\vec{e}_{\mu}\). \(\abs{\vec{e}_{\mu}}\) is called the dimension of \(V\), which we denote by \(\dim{V}\).
     \end{definition}
+
+    While vector spaces which do not admit finite bases are of substantial interest in a variety of contexts in both mathematics and physics, the rest of this text will be concerned with vector spaces which do admit finite bases. From this point onwards in the text, all vector spaces should be taken to have finite dimension.
+
     \begin{notation}[Mappings]
-        Given a mapping \(f:A\to{}B\) and some \(a\in{}A\), we denote the value of \(f\) at \(a\) by \(\app{f}{a}\).
+        Given a mapping \(f: A \to B\) and some \(a \in A\), we sometimes denote the value of \(f\) at \(a\), usually denoted \(f(a)\), by \(\app{f}{a}\).
     \end{notation}
+
     \begin{definition}[Linear Mappings]
-        Let \(V\) be a vector space over \(F\). A mapping \(f:V\to{}F\) is called linear if for all \(\vec{u},\vec{v}\in{}V\) and \(a\in{}F\), the following hold:
+        Let \(V\) be a vector space over \(F\). A mapping \(f: V \to F\) is called linear if for all \(\vec{u}, \vec{v} \in V\) and \(a \in F\), the following hold:
         \begin{itemize}
             \item\(\app{f}{\vec{u}+\vec{v}}=\app{f}{\vec{u}}+\app{f}{\vec{v}}\)
             \item\(\app{f}{a\vec{u}}=a\app{f}{\vec{u}}\)
         \end{itemize}
     \end{definition}
+
     \begin{definition}[Isomorphism]
         Let \(U\) and \(V\) be vector spaces. A bijective linear mapping \(f:U\to{}V\) is called an isomorphism. If any isomorphisms exist, \(U\) and \(V\) are called isomorphic.
     \end{definition}
-    \begin{definition}[Dual Space]
-        Let \(V\) be a vector space over \(F\). We call the set of all linear mappings \(\vec{v^{*}}:V\to{}F\) the dual space of \(V\), and denote it by \(V^{*}\). \(V^{*}\) is a vector space over \(F\) once vector addition and scalar multiplication are defined as follows:
-        \begin{itemize}
-            \item\(\app{\vec{u}^{*}+\vec{v}^{*}}{\vec{v}}=\app{\vec{u}^{*}}{\vec{v}}+\app{\vec{v}^{*}}{\vec{v}}\)
-            \item\(\app{a\vec{v}^{*}}{\vec{v}}=a\app{\vec{v}^{*}}{\vec{v}}\)
-        \end{itemize}
-        The elements of \(V^{*}\) are called covectors. Covectors are canonically indexed with a superscript, rather than the subscript which is used for vectors.
-    \end{definition}
-    \begin{definition}[Dual Basis]
-        Let \(V\) be a vector space over \(F\), and let \(V^{*}\) be its dual space. Given a basis \(\vec{e}_{\mu}\) of \(V\), we define the dual basis to be the set of \(\vec{e}^{\nu}\in{}V^{*}\) such that \(\app{\vec{e}^{\nu}}{\vec{e}_{\mu}}=\delta^{\nu}_{\mu}\).
-    \end{definition}
+    
     \begin{theorem}
-        Let \(V\) be a vector space. Given a basis \(\vec{e}_{\mu}\) of V, there exists one and only one dual basis.
+        Let \(U\) and \(V\) be vector spaces. \(U\) and \(V\) are isomorphic if and only if \(\dim{U} = \dim{V}\).
+        \begin{proof}
+            % TODO
+        \end{proof}
+    \end{theorem}
+
+    \begin{definition}[Dual Space]
+        Let \(V\) be a vector space over \(F\). We call the set of all linear mappings \(\vec{v^{*}}: V \to F\) the dual space of \(V\), and denote it by \(V^{*}\). \(V^{*}\) is a vector space over \(F\) once vector addition and scalar multiplication are defined as follows:
+        \begin{itemize}
+            \item \(\app{\vec{u}^{*}+\vec{v}^{*}}{\vec{v}} = \app{\vec{u}^{*}}{\vec{v}}+\app{\vec{v}^{*}}{\vec{v}}\)
+            \item \(\app{a\vec{v}^{*}}{\vec{v}} = a\app{\vec{v}^{*}}{\vec{v}}\)
+        \end{itemize}
+        The elements of \(V^{*}\) are called covectors. Indexed sets of covectors are indexed with a superscript, rather than the subscript which is used for vectors.
+    \end{definition}
+
+    \begin{definition}[Dual Basis]
+        Let \(V\) be a vector space over \(F\), and let \(V^{*}\) be its dual space. Given a basis \(\vec{e}_{\mu}\) of \(V\), we define a dual basis to be a set of \(\vec{e}^{\nu} \in V^{*}\) which form a basis of \(V^{*}\) and satisfy \(\app{\vec{e}^{\nu}}{\vec{e}_{\mu}}=\delta^{\nu}_{\mu}\).
+    \end{definition}
+
+    \begin{theorem}
+        Let \(V\) be a vector space. Given a basis \(\vec{e}_{\mu}\) of V, there exists a unique dual basis.
         \begin{proof}
             %TODO
         \end{proof}
     \end{theorem}
-    Observe that the definition of the dual basis allows for the operation of a covector on a vector to be evaluated especially easily. Let \(V\) be a vector space over \(F\), and let \(V^{*}\) be its dual space. Let \(\vec{e}_{\mu}\) be a basis of \(V\), then if \(\vec{v}\in{}V\) we may write \(\vec{v}=a^{\mu}\vec{e}_{\mu}\) for some \(a^{\mu}\). Similarly, let \(\vec{e}^{\nu}\) be the dual basis of \(V^{*}\) corresponding to \(\vec{e}_{\mu}\), then if \(\vec{v}^{*}\in{}V^{*}\) we may write \(\vec{v}^{*}=b_{\nu}\vec{e}^{\nu}\) for some \(b_{\nu}\). Therefore, in all generality we have
+
+    Observe that the definition of the dual basis allows for the operation of a covector on a vector to be evaluated especially easily. Let \(V\) be a vector space over \(F\), and let \(V^{*}\) be its dual space. Let \(\vec{e}_{\mu}\) be a basis of \(V\), then if \(\vec{v} \in V\) we may write \(\vec{v} = a^{\mu}\vec{e}_{\mu}\) for some \(a^{\mu}\). Similarly, let \(\vec{e}^{\nu}\) be the dual basis of \(V^{*}\) corresponding to \(\vec{e}_{\mu}\), then if \(\vec{v}^{*} \in V^{*}\) we may write \(\vec{v}^{*} = b_{\nu}\vec{e}^{\nu}\) for some \(b_{\nu}\). Therefore, in all generality we have
     \begin{align*}
-        \app{\vec{v}^{*}}{\vec{v}}&=\app{b_{\nu}\vec{e}^{\nu}}{a^{\mu}\vec{e}_{\mu}}\\
-                                  &=a^{\mu}b_{\nu}\app{\vec{e}^{\nu}}{\vec{e}_{\mu}}\\
-                                  &=a^{\mu}b_{\nu}\delta_{\mu}^{\nu}\\
-                                  &=a^{\mu}b_{\mu},
+        \app{\vec{v}^{*}}{\vec{v}} &= \app{b_{\nu}\vec{e}^{\nu}}{a^{\mu}\vec{e}_{\mu}}\\
+                                   &= a^{\mu}b_{\nu}\app{\vec{e}^{\nu}}{\vec{e}_{\mu}}\\
+                                   &= a^{\mu}b_{\nu}\delta_{\mu}^{\nu}\\
+                                   &= a^{\mu}b_{\mu},
     \end{align*}
-    where the critical simplification \(\app{\vec{e}^{\nu}}{\vec{e}_{\mu}}=\delta_{\mu}^{\nu}\) would not have occured if \(\vec{e}^{\nu}\) was not chosen to be the dual basis corresponding to \(\vec{e}_{\mu}\).
+    where the critical simplification \(\app{\vec{e}^{\nu}}{\vec{e}_{\mu}} = \delta_{\mu}^{\nu}\) would not have occured if \(\vec{e}^{\nu}\) was not chosen to be the dual basis corresponding to \(\vec{e}_{\mu}\).
 
     Having shown that every vector space has a corresponding dual space, it is natural to ask about the dual space of the dual space. At first glance, it seems as if our creation of a single vector space has lead to an infinite family of vector spaces simultaneously springing into existence. Fortunately (or unfortunately, depending on the reader's affinity for vector spaces), it turns out that the only vector spaces which are of any interest to us are the one which we explicitly constructed and its dual space. This is due to a particularly strong relationship between vector spaces and the dual spaces of their dual spaces.
+
     \begin{theorem}
-        Let \(V\) be a vector space over \(F\). For every linear mapping \(\vec{v}^{**}:V^{*}\to{}F\), there is one and only one vector \(\vec{v}\in{}V\) such that \(\app{\vec{v}^{**}}{\vec{v}^{*}}=\app{\vec{v}^{*}}{\vec{v}}\) for all \(\vec{v}^{*}\in{}V^{*}\). This defines an isomorphism.
+        Let \(V\) be a vector space over \(F\). If \(\vec{v}^{**}:V^{*}\to{}F\) is a linear mapping, then there exists a unique vector \(\vec{v}\in{}V\) such that \(\app{\vec{v}^{**}}{\vec{v}^{*}}=\app{\vec{v}^{*}}{\vec{v}}\) for all \(\vec{v}^{*}\in{}V^{*}\). This defines an isomorphism between \(V\) and \((V^{*})^{*}\).
         \begin{proof}
             %TODO
         \end{proof}
     \end{theorem}
-    This correspondence is called the natural correspondence, and it is so strong that it is sensible to refer to elements of \((V^{*})^{*}\) by their corresponding elements of \(V\). In this sense, we can state that a vector \(\vec{v}\in{}V\) is a mapping \(\vec{v}:V^{*}\to{}F\), analogously to how a covector \(\vec{v}^{*}\in{}V^{*}\) is a mapping \(\vec{v}^{*}:V\to{}F\). One particularly nice way of thinking about this correspondence is to observe that just as \(\app{\vec{v}^{*}}{\circ}\) can be thought of as taking a vector and returning a scalar, \(\app{\circ}{\vec{v}}\) can be thought of as taking a covector and returning a scalar.
+
+    This correspondence is sometimes called the natural correspondence, and it is so strong that it is sensible to refer to elements of \((V^{*})^{*}\) by their corresponding elements of \(V\). In this sense, we can state that a vector \(\vec{v} \in V\) is a linear mapping \(\vec{v}: V^{*} \to F\), analogously to how a covector \(\vec{v}^{*} \in V^{*}\) is a linear mapping \(\vec{v}^{*}: V \to F\). One particularly nice way of thinking about this correspondence is to observe that just as \(\app{\vec{v}^{*}}{\circ}\) can be thought of as taking a vector and returning a scalar, \(\app{\circ}{\vec{v}}\) can be thought of as taking a covector and returning a scalar.
 \end{document}

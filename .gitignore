@@ -17,3 +17,6 @@
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
+
+# Ignore PDFs generated when compiling subfiles individually.
+src/*.pdf
